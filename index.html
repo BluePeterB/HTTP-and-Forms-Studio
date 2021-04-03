@@ -3,17 +3,64 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
+	 function setSearchEngine(){
+		 
+		 //let selection = document.querySelector('input[name="engine"]:checked');
+		 
+		 //let engine = selection.value;
+		 let engine = document.querySelector('input[name="engine"]:checked').value;
+		//if (engine === null){return}
+		let actions = {
+			"google":  "https://www.google.com/",
+			"bing":  "https://www.bing.com/search",
+			"duckDuckgo": "https://duckduckgo.com/",
+			"ask": "https://www.ask.com/web"
+		}
+		let actionURL;
+		actionURL = actions[engine];
+
+		document.getElementById("searchForm" ).action = actionURL;
+	
+		console.log("setSearchEngine ran1.");
+		console.log("Selection",engine);
+		console.log("actionURL", actionURL);
+		console.log("setSearchEngine ran2.");
+		console.log("FormAction",document.getElementById("searchForm" ).action);
+	}
+
+
+	 //function doNothing(){console.log("do nothing")};
+
     window.addEventListener("load", function(){
-        // TODO: register the handler
+
+
+		//Register handler
+        let button = document.getElementById("formSubmit");
+        // add event handler for when button clicked
+        let form = document.querySelector("form");
+            form.addEventListener("submit", function(event) {
+				let x = 2;
+				//doNothing(); //the 1st line with a console.log does not log. ????
+				
+				setSearchEngine();
+				console.log("Submit ran");
+		});
     });
 	</script>
 </head>
 
 <body>
-
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	
+	<form id="searchForm" action>
+		<div class="formField">
+			<label><input type="text" name="q" id="q"/></label>
+			<label><input type="radio" name="engine" value="google"/>Google</label>
+			<label><input type="radio" name="engine" value="duckDuckgo"/>DuckDuckGo</label>
+			<label><input type="radio" name="engine" value="bing"/>Bing</label>
+			<label><input type="radio" name="engine" value="ask"/>Ask</label>
+			<button id="formSubmit">Go!</button>
+		</div>	
 	</form>
-
+	
+    
 </body>
